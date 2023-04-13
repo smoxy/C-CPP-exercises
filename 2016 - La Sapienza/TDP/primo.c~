@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+
+//Intestazione di una funzione
+
+//<tipo ritorno> <nome funzione> ( <lista paramentri> )
+
+//dichiarazione della funzione main
+int main (int argc, char** argv);
+
+/*
+questo è un pratico commento su più
+linee
+*/
+
+//definizione della funzione main
+int main (int argc, char** argv){
+	printf("Buongiorno Professore!\n");
+
+}

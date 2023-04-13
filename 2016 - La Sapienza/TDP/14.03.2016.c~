@@ -1,0 +1,16 @@
+/*
+Array:		Sequenza di valori aventi stesse dimensioni
+			Richiamo di un valore dall'array: <Nome Array>[<posizione>]
+											V[2]
+
+Puntatore: Può essere convertito a intero senza problemi, 
+*/
+
+																					|	STACK
+int main(){																			|
+	int i=5;																		|92		 5	i
+	int j=3;																		|96		 3	j
+	int * address_of_i=&i;															|100		address_of_i
+ 					 //↑ l'operatore Andersen ritorna l'indirizzo della variabile	|					
+ //<tipo> * <nome>;																	|
+}																					|

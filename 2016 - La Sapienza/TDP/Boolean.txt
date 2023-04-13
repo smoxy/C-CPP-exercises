@@ -1,0 +1,9 @@
+Operatori booleani
+<
+>
+<=
+>=
+
+a && b // and
+a || b // or
+!a     // not

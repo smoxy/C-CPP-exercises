@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type">
+  <title>Esame di Tecniche di Programmazione del 13/02/2017</title>
+  <style>
+    img {
+    margin: 15px;
+    }
+    
+    .maxwidth {
+    font-family: Verdana, Geneva, sans-serif;
+    max-width: 1000px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%);
+    }
+    
+    hr {
+    border: 1px solid;
+    color: gray;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="maxwidth">
+    
+    <h1>Esame di Tecniche di Programmazione del 13/02/2017</h1>
+    <hr>
+
+    <h3>Istruzioni per lo svolgimento della prova:</h3>
+    <ul>
+      <li>Scaricare il compito digitando in un terminale il comando
+	<strong><code>TDP_download_compito.bash</code></strong>.</li>
+      <li>Inserire i propri dati personali (<strong>matricola, nome e
+	  cognome</strong>) nella GUI, quindi salvare e chiudere la
+	GUI.</li>
+      <li>All'esercizio i &egrave; associata la
+	directory <code>esercizio{i}</code>, contenente i file necessari
+	allo svolgimento dell'esercizio. Ciascun esercizio deve essere
+	svolto modificando esclusivamente il file <code>esercizio{i}.h
+	</code> (se necessario) ed <code>esercizio{i}.c</code> presenti
+	nella directory corrispondente. Nessun file per qualsiasi motivo
+	deve essere spostato dalla directory in cui si trova. Nessun altro
+	file deve essere modificato. Non devono essere creati ulteriori
+	file.</li>
+      <li>Il file contenente il programma principale di ciascun esercizio
+	&egrave; <code> test_esercizio{i}.c</code>. Tale file deve essere
+	compilato usando il <code> Makefile</code> fornito nella directory,
+	ed il corrispondente eseguibile (<code> test_esercizio{i}</code>)
+	lanciato per eseguire i test di correttezza e conoscerne l'esito. Il
+	file <code>test_esercizio{i}.c</code> non deve essere modificato per
+	alcun motivo.</li>
+      <li>Alla fine del tempo concesso per svolgere l' esame o, se lo
+	avete terminato prima dello scadere del tempo, dovete eseguire
+	lo <strong>script di consegna dell' esame</strong>. <strong>La
+	  consegna pu&ograve; essere effettuata una ed una volta sola</strong>, per
+	cui consegnate solo quando siete sicuri di volerlo fare. Per
+	consegnare il compito dovete digitare sul terminale il
+	comando <strong><code>TDP_upload_compito.bash</code></strong>. Una volta
+	avviato lo script di consegna controllate che sia andato tutto a
+	buon fine <strong>verificando</strong> che sul terminale venga
+	stampato un output simile al seguente:<br>
+      <code>local:
+  	  matricola_cognome_nome_hostname.tar.gz remote: 
+	  uploads/matricola_cognome_nome_hostname.tar.gz<br>
+	  &nbsp;&nbsp;200 PORT command successful. Consider using PASV.<br>
+	  &nbsp;&nbsp;150 Ok to send data.<br>
+	  &nbsp;&nbsp;226 Transfer complete. 4886 bytes sent in 0.00 secs (113606.8 kB/s)<br>
+	  &nbsp;&nbsp;221 Goodbye.</code></li>
+      <li>Verranno corretti esclusivamente gli esercizi la cui
+  	compilazione dia esito positivo. In caso contrario
+  	verr&agrave; assegnato un punteggio nullo. Se non verr&agrave;
+  	eseguito lo script di consegna dell' esame esso non
+  	verr&agrave; corretto (&egrave; equivalente a non aver
+  	consegnato il compito a fine esame).</li>
+      <li>Per eventuali problemi o dubbi, chiedere al docente.</li>
+    </ul>
+    <hr>
+
+    <p><br></p>
+
+    <h2>Esercizio 1</h2>
+    <p>Sia data la seguente struttura <code>Mat:</code></p>
+<p><code>
+typedef struct Mat {<br>
+&nbsp;&nbsp;int cols; // numero di colonne<br>
+&nbsp;&nbsp;int rows; // numero di righe<br>
+&nbsp;&nbsp;int** row_ptrs; // puntatori alle righe<br>
+} Mat;
+</code></p>
+<p>Implementare la seguente funzione C:</p>
+
+<p><code>Mat* matrixGradient(Mat* row_gradients, Mat* col_gradients, Mat* src);</code></p>
+<p>che dati in input:
+<ul>
+  <li>puntatore ad una matrice preallocata <code>row_gradients</code></li>
+  <li>puntatore ad una matrice preallocata <code>col_gradients</code></li>
+  <li>puntatore ad una matrice di input <code>src</code></li>
+</ul>
+dove le tre matrici hanno le stesse dimensioni, modifichi <code>row_gradients</code> e <code>col_gradients</code> in modo che
+<ul>
+  <li> <code>row_gradients[r][c] = src[r][c] - src[r-1][c]</code></li>
+  <li> <code>col_gradients[r][c] = src[r][c] - src[r][c-1]</code></li>
+</ul>
+La prima riga di <code>row_gradients</code> e' nulla, cosi' come la prima colonna di <code>col_gradients</code>.
+
+<h3>Esempio</h3>
+    <p>Data una struttura <code>Mat src</code> contenente la seguente matrice <code>2x3</code>:</p>
+    <p><code>
+	7 5 3<br>
+	5 6 2<br>
+    </code></p>
+
+    <p>Richiamando la seguente linea di codice:</p>
+    <p><code>matrixGradient(row_gradient, col_gradient, src);</code></p>
+    <p>si ottiene il seguente effetto su <code>row_gradient</code>:</p>
+    <p><code>
+	0 0 0<br>
+	-2 1 -1<br>
+    </code></p>
+    <p>ed il seguente effetto su <code>col_gradient</code>:</p>
+    <p><code>
+	0 -2 -2<br>
+	0 1 -4<br>
+    </code></p>
+
+    <hr>
+    <p><br></p>
+
+    <h2>Esercizio 2</h2>
+    <p>Con riferimento alla struttura SCL descritta di seguito<br>
+      <br>
+      <code>struct ListElement {<br>
+        &nbsp; int value;<br>
+        &nbsp; int count;<br>
+        &nbsp; struct ListElement* next;<br>
+        };</code></p>
+    <p>Si realizzi la seguente funzione C</p>
+    <ul>
+      <li><code>int* unzip(ListElement* l,  int* v_dim);</code></li>
+    </ul>
+    <p>che, data una struttura collegata lineare <code>l</code>, allochi un array la cui dimensione e' pari alla domma dei campi "count" degli alementi della lista. La dimensione di tale array deve essere memorizzata nella locazione di memoria puntata da <code>v_dim</code>, e l'array restituiro dalla funzione.      
+L'array restuito contiene gli elementi della lista ripetuti "count" volte.
+</p>
+    <h3>Esempio</h3>
+    <p>Sia data la seguente lista</p>
+    <p><code>
+	{value=7, count=2} -&gt; {value=3, count=1} -&gt; {value=5,
+count=3}<br>
+    </code></p>
+la funzione unzip produrra' un array di dimensione 6 (2+1+3), cosi' costituito:
+    <p><code>7 7 3 5 5 5</code><br></p>
+    <hr>
+   
+    <p><br></p>
+
+    <h2>Esercizio 3</h2>
+    <p>Sia data una lista i cui elementi appartengono alla seguente
+struttura:</p>
+    <p><code>
+	struct ListElement {<br>
+	&nbsp;&nbsp;int info;<br>
+	&nbsp;&nbsp;struct ListElement* next;<br>
+	};
+    </code></p>
+    <p>si realizzi la funzione <strong>ricorsiva</strong> C:</p>
+
+    <p><code>ListElement* recursiveMerge(ListElement* l1, ListElement* l2)</code></p>
+    <p>che date in input due liste <code>l1</code> ed <code>l2</code> ordinate, restituisca una lista ordinata che e' il merge delle due liste passate in ingresso.
+
+    <h3>Esempio</h3>
+    <p>Sia <code>l1</code> la seguente sequenza:</p>
+    <p><code>
+    1 1 2 4 9
+    </code></p>
+    <p>Sia <code>l2</code> la seguente sequenza:</p>
+    <p><code>
+    0 3 7 8
+    </code></p>
+
+    <p>Richiamando la seguente istruzione:</p>
+    <p><code>ListElement* l_d = recursiveMerge(l1, l2);</code></p>
+    <p><code>l_d</code> dovr&agrave; contenere:</p>
+    <p><code>
+    0 1 1 2 3 4 7 8 9
+    </code></p>
+    <hr>
+
+    <p><br></p>
+
+  </div>
+</body>
+</html>

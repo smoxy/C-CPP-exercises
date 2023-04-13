@@ -1,0 +1,14 @@
+(1 + 3) * 48
+				|
+		*		| push 1
+       / \		| push 3
+      /   \		| pop(R1)
+     +     48	| pop(R2)
+    / \			| add R1, R2
+   /   \		| push R1
+  1     3		| push 48
+				| pop R1
+				| pop R2
+				| mul R1, R2
+				| push R1
+				|

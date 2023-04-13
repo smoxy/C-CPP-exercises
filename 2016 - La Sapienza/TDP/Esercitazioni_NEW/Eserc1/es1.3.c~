@@ -1,0 +1,17 @@
+/*
+Esercizio 1.3
+
+Scrivere un programma C che stampa sullo schermo il vostro nome, cognome e numero di matricola.
+*/
+
+#include <stdio.h>
+
+int main() {
+  double a,c;
+  printf("Enter your Name and the Surname:\t");
+  scanf("%lf", &a);
+  printf("Enter your registration number:\t");
+  scanf("%d", &c);
+  printf("Nome: %lf\n", a);
+  return 0;
+}
